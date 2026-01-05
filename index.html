@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="h-full">
 <head>
     <meta charset="UTF-8">
     <!-- 
       ★ 关键修改 ★
-      将 width=device-width 改为 width=1280。
-      这会强制手机浏览器模拟 1280px 的宽度，从而显示电脑版布局并自动缩放，
-      而不是切换到单列的移动端布局。
+      将 width 改为 768。
+      1280px 在手机上太宽，导致内容缩得很小，下面会有大片空白。
+      768px (iPad竖屏宽度) 是个黄金值：既能强制保持双列布局，
+      又能让内容在手机上显示得足够大，填满竖向屏幕，消除底部空白。
     -->
-    <meta name="viewport" content="width=1280">
+    <meta name="viewport" content="width=768">
     <title>高娜 - 创意个人简历</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -91,8 +92,12 @@
         }
     </style>
 </head>
-<!-- 添加 min-w-[1024px] 强制页面保持足够宽度 -->
-<body class="text-dark font-sans p-8 min-h-screen min-w-[1024px]">
+<!-- 
+    修改: min-w-[768px] 
+    配合 viewport width=768，确保页面宽度刚好卡在“双列布局”的最小尺寸上，
+    手机上看就是完美的满屏效果。
+-->
+<body class="text-dark font-sans p-8 min-h-screen min-w-[768px] h-full">
 
     <!-- 顶部操作栏 -->
     <div class="fixed top-4 right-4 z-50 no-print">
@@ -101,7 +106,7 @@
         </button>
     </div>
 
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-6xl mx-auto h-full">
         
         <!-- 顶部 Header (强制 grid-cols-12 保持横向布局) -->
         <header class="mb-8 grid grid-cols-12 gap-6">
@@ -112,9 +117,9 @@
                 </div>
                 <div class="relative z-10">
                     <div class="flex flex-row items-end gap-6">
-                        <h1 class="text-7xl font-black tracking-tighter uppercase italic transform -skew-x-6">高 娜</h1>
+                        <h1 class="text-7xl font-black tracking-tighter uppercase italic transform -skew-x-6 whitespace-nowrap">高 娜</h1>
                         <div class="mb-2">
-                            <span class="inline-block bg-black text-white px-3 py-1 text-lg font-bold transform -rotate-2">运营 / 管理 / 互金</span>
+                            <span class="inline-block bg-black text-white px-3 py-1 text-lg font-bold transform -rotate-2 whitespace-nowrap">运营 / 管理 / 互金</span>
                         </div>
                     </div>
                     <p class="mt-4 text-lg font-bold border-l-4 border-black pl-4">
@@ -140,7 +145,7 @@
         </header>
 
         <!-- 主要内容网格布局 (强制 grid-cols-12) -->
-        <div class="grid grid-cols-12 gap-6">
+        <div class="grid grid-cols-12 gap-6 h-full">
 
             <!-- 左列 (侧边栏信息) (强制 col-span-4) -->
             <div class="col-span-4 space-y-6 flex flex-col">
